@@ -51,7 +51,7 @@ func main() {
 
 ```
 
-## Generating policies
+### Generating policies
 
 The policies are generated from the develop branch of the [Serverless Application Model](https://github.com/awslabs/serverless-application-model) repository, using the [generator](./cmd/generator.go). This little app will create the [policies.go](./policies.go) file and tell which policies need to be updated manually because they resulted in an error.
 
@@ -66,6 +66,34 @@ Right now, there are nine (9) policies that result in some error processing:
 * PollyFullAccessPolicy
 * ServerlessRepoReadWriteAccessPolicy
 * DynamoDBReadPolicy
+
+## Builder
+
+Builder helps with generating zip files for AWS Lambda functions. The builder package assumes that running "go build" will suffice to build the executable and will create a zipfile with the same name as the parent.
+
+### Usage
+
+To use the builder, you need to import the `builder` package, create a new `Factory`, and either call `Zip()` or `Build()`.
+
+```go
+package main
+
+import (
+	// Import the builder package
+	"github.com/retgits/pulumi-helpers/builder"
+)
+
+func main() {
+	// Create a new factory
+	factory := builder.NewFactory().WithFolder("../sampolicies")
+
+	// Run go build and panic if an error is returned
+	factory.MustBuild()
+
+	// Run zip and panic if an error is returned
+	factory.MustZip()
+}
+```
 
 ## Contributing
 
