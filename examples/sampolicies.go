@@ -18,4 +18,16 @@ func main() {
 
 	// Print the policy statement
 	fmt.Println(policy)
+
+	// Remove all policies so you can begin with a clean slate
+	iamFactory.ClearPolicies()
+
+	// Add a new policy to the factory
+	iamFactory.AddAWSSecretsManagerRotationPolicy()
+
+	// Create the policy document
+	policy, _ = iamFactory.GetPolicyStatement()
+
+	// Print the policy statement
+	fmt.Println(policy)
 }

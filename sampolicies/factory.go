@@ -87,3 +87,8 @@ func (f *Factory) GetPolicyStatement() (string, error) {
 	// Return the policy document
 	return t, nil
 }
+
+// ClearPolicies removes all policies so you can begin with a clean slate
+func (f *Factory) ClearPolicies() {
+	f.policies = nil
+}
