@@ -98,10 +98,8 @@ func (f *Factory) run(args string) error {
 	}
 
 	cmd := exec.Command(shell, shellFlag, args)
-	fmt.Println(cmd)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	cmd.Dir = f.folder
-	fmt.Println(cmd.Dir)
 	return cmd.Run()
 }
