@@ -26,6 +26,13 @@ func MustGetGatewayResource(ctx *pulumi.Context, gw *apigateway.RestApi, path st
 // GetGatewayResource gets the API resource based on the path. If no resource can be found
 // an error is thrown.
 func GetGatewayResource(ctx *pulumi.Context, gw *apigateway.RestApi, path string) (*apigateway.LookupResourceResult, error) {
+	// Return a mock result for preview and dry run
+	if ctx.DryRun() {
+		return &apigateway.LookupResourceResult{
+			Id: "1",
+		}, nil
+	}
+
 	c := make(chan string)
 	gw.ID().ToStringOutput().ApplyString(func(id string) string {
 		c <- id
