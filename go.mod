@@ -1,8 +1,8 @@
-module github.com/retgits/pulumi-helpers
+module github.com/retgits/pulumi-helpers/v2
 
 go 1.14
 
 require (
-	github.com/pulumi/pulumi v1.13.0
-	github.com/pulumi/pulumi-aws v1.27.0
+	github.com/pulumi/pulumi-aws/sdk/v2 v2.0.0
+	github.com/pulumi/pulumi/sdk/v2 v2.0.0
 )
